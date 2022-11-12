@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <title>Project list</title>
+</head>
+<body>
+
+<div class="container">
+  <a href="/"><br>Home</a>
+  <h2><br>Your projects:</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th colspan="3">Operations</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="project, el: ${listProjects}">
+      <td th:text="${el.index + 1}"></td>
+      <td>
+        <a th:href="@{|/books/book-date/${project.getId()}|}" th:text="${project.name}"></a>
+      </td>
+      <td th:text="${project.getName()}"></td>
+      <td>
+        <a th:href="@{|/risks/add/${project.getId()}|}">Add risks</a>
+      </td>
+      <td>
+        <a th:href="@{|/books/take-book/${project.getId()}|}">Take book</a>
+      </td>
+      <td>
+        <a th:href="@{|/books/remove/${project.getId()}|}">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <span>
+           <a th:href="@{|/projects/add|}">Add new book</a>
+    </span>
+</div>
+</body>
+</html>

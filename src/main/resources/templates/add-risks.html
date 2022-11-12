@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <title>Add book</title>
+</head>
+<body>
+<div class="container">
+  <thead>
+
+  <div class="col-md-offset-2">
+    <h2>Create new book</h2>
+  </div>
+  <table>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Description</th>
+      <th scope="col">Type</th>
+      <th scope="col">Your rate</th>
+=    </tr>
+    </thead>
+    <tbody>
+      <form class="container" th:action="@{/risks/add}" th:object="${risks}" method="post">
+        <tr th:each="generalRisk, el: ${generalRisks}">
+          <td th:text="${el.index}"></td>
+          <td th:text="${generalRisk.description}"></td>
+          <td th:text="${generalRisk.riskUnderType}"></td>
+          <td th:text="${risks[__${el.index}__].rate}"></td>
+          <td>
+            <input type="hidden" th:field="*{get(el.indefx)}" />
+          </td>
+            <!--            <select th:field="*{risks[__${el.index}__].rate}">
+                          <option th:value="0" th:text="0"></option>
+                          <option th:value="1" th:text="1"></option>
+                        </select>-->
+          <!--          <td th:text="${risk.getGeneralRisk().getDescription()}"></td>
+                    <td th:text="${risks[__${el.index}__].getGeneralRisk().getRiskUnderType().name()}"></td>
+                    <td>
+                      <select th:field="${risks[__${el.index}__].getRate()}">
+                        <option th:value="0" th:text="0"></option>
+                        <option th:value="1" th:text="1"></option>
+                      </select>
+                    </td>
+                  </tr>-->
+        </tr>
+        <div class="col-sm-offset-3 col-sm-8">
+          <input type="submit" class="btn btn-info" value="Register"/>
+        </div>
+      </form>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
